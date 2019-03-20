@@ -1,0 +1,18 @@
+<h2> Lista Movimentos Mensalistas </h2>
+
+<ul>
+{% for mov_mensalista in mov_mensalistas %}
+    <li> {{ mov_mensalista.mensalista }} - {{dt_pgto}} </li>
+{% endfor %}
+</ul>
+
+
+<form action="{% url 'core_mov_mensalistas_novo' %}" method="POST">
+    {# csrf_token = prevents attacks "csrf"  #}
+    {% csrf_token %}
+    
+    {# as_p = like paragraph  #} 
+    {{ form.as_p }}
+    
+    <button type="submit">Cadastrar</button>
+</form>
