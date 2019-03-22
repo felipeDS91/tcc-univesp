@@ -1,11 +1,15 @@
 <h2> Lista Movimentos Rotativos </h2>
 
 <ul>
-{% for mov_rotativo in mov_rotativos %}
-    <li> {{ mov_rotativo.checkin }} - {{ mov_rotativo.veiculo.placa }}  </li>
-{% endfor %}
+    {% for mov_rotativo in mov_rotativos %}
+        <li>
+            <a href="{% url 'core_mov_rotativos_update' mov_rotativo.id %}"> 
+                {{ mov_rotativo.checkin }} - {{ mov_rotativo.veiculo.placa }} 
+            </a>
+        </li>
+    {% endfor %}
 </ul>
-
+    
 
 <form action="{% url 'core_mov_rotativos_novo' %}" method="POST">
         {# csrf_token = prevents attacks "csrf"  #}

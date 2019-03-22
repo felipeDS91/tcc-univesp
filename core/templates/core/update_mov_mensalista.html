@@ -1,0 +1,15 @@
+<h2>Updating MovMensalista: {{ mov_mensalista }}</h2>
+
+
+<form action="{% url 'core_mov_mensalistas_update' mov_mensalista.id %}" method="POST">
+    {# csrf_token = prevents attacks "csrf"  #}
+    {% csrf_token %}
+
+    {# as_p = like paragraph  #} 
+    {{ form.as_p }}
+
+    <button type="submit">Salvar</button>
+</form>
+
+
+<a href="{% url 'core_mov_mensalistas_delete' mov_mensalista.id %}">Deletar</a>

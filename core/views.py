@@ -54,6 +54,15 @@ def pessoa_update(request, id):
         return render(request, 'core/update_pessoa.html', data)
 
 
+def pessoa_delete(request, id):
+    pessoa = Pessoa.objects.get(id=id)
+    if request.method == 'POST':
+        pessoa.delete()
+        return redirect('core_lista_pessoas')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':pessoa})
+
+
 def lista_veiculos(request):
     veiculos = Veiculo.objects.all()
     form = VeiculoForm()
@@ -83,6 +92,15 @@ def veiculo_update(request, id):
         return render(request, 'core/update_veiculo.html', data)
 
 
+def veiculo_delete(request, id):
+    veiculo = Veiculo.objects.get(id=id)
+    if request.method == 'POST':
+        veiculo.delete()
+        return redirect('core_lista_veiculos')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':veiculo})
+
+
 def lista_mov_rotativos(request):
     mov_rotativos = MovRotativo.objects.all()
     form = MovRotativoForm()
@@ -95,6 +113,30 @@ def mov_rotativos_novo(request):
     if form.is_valid():
         form.save()        
     return redirect('core_lista_mov_rotativos')
+
+
+def mov_rotativos_update(request, id):
+    data = {}
+    mov_rotativo = MovRotativo.objects.get(id=id)
+    form = MovRotativoForm(request.POST or None, instance=mov_rotativo)
+    data['mov_rotativo'] = mov_rotativo
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_mov_rotativos')
+    else:
+        return render(request, 'core/update_mov_rotativo.html', data)
+
+
+def mov_rotativos_delete(request, id):
+    mov_rotativos = MovRotativo.objects.get(id=id)
+    if request.method == 'POST':
+        mov_rotativos.delete()
+        return redirect('core_lista_mov_rotativos')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':mov_rotativos})
 
 
 def lista_mensalistas(request):
@@ -111,6 +153,30 @@ def mensalista_novo(request):
     return redirect('core_lista_mensalistas')
 
 
+def mensalista_update(request, id):
+    data = {}
+    mensalista = Mensalista.objects.get(id=id)
+    form = MensalistaForm(request.POST or None, instance=mensalista)
+    data['mensalista'] = mensalista
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_mensalistas')
+    else:
+        return render(request, 'core/update_mensalista.html', data)
+
+
+def mensalista_delete(request, id):
+    mensalista = Mensalista.objects.get(id=id)
+    if request.method == 'POST':
+        mensalista.delete()
+        return redirect('core_lista_mensalistas')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':mensalista})
+
+
 def lista_mov_mensalistas(request):
     mov_mensalistas = MovMensalista.objects.all()
     form = MovMensalistaForm()
@@ -123,3 +189,26 @@ def mov_mensalistas_novo(request):
     if form.is_valid():
         form.save()        
     return redirect('core_lista_mov_mensalistas')
+
+
+def mov_mensalistas_update(request, id):
+    data = {}
+    mov_mensalista = MovMensalista.objects.get(id=id)
+    form = MovMensalistaForm(request.POST or None, instance=mov_mensalista)
+    data['mov_mensalista'] = mov_mensalista
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_mov_mensalistas')
+    else:
+        return render(request, 'core/update_mov_mensalista.html', data)
+
+def mov_mensalistas_delete(request, id):
+    mov_mensalista = MovMensalista.objects.get(id=id)
+    if request.method == 'POST':
+        mov_mensalista.delete()
+        return redirect('core_lista_mov_mensalistas')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':mov_mensalista})

@@ -1,0 +1,11 @@
+<h2> Tem certeza que deseja deletar: {{ obj }} </h2>
+
+{# action="{% url 'core_pessoa_delete' pessoa.id %}" #}
+{# Se a action não está definida, automaticamente a página dispara para a url dela mesma, #}
+{# só que quano clicada no "Deletar", dispara como post pois o "Deletar" está dentro de um form. #}
+{# com isso, conseguimos fazer uma mensagem de confirmação generica #}
+
+<form method="POST"> 
+    {% csrf_token %}
+    <button type="submit">Deletar</button>
+</form>
