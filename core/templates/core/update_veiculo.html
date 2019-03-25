@@ -1,14 +1,25 @@
-<h2>Updating Veiculo: {{ veiculo }}</h2>
+{% extends 'base.html'%}
+{% load bootstrap%}
 
 
-<form action="{% url 'core_veiculo_update' veiculo.id %}" method="POST">
-    {# csrf_token = prevents attacks "csrf"  #}
-    {% csrf_token %}
+{% block main %}
 
-    {# as_p = like paragraph  #} 
-    {{ form.as_p }}
+<class class="row">
+    <class class="col">
+        <h2>Alterando veiculo: {{ veiculo }}</h2>
 
-    <button type="submit">Salvar</button>
-</form>
+        <form action="{% url 'core_veiculo_update' veiculo.id %}" method="POST">
+            {# csrf_token = prevents attacks "csrf"  #}
+            {% csrf_token %}
+        
+            {# as_p = like paragraph  #} 
+            {{ form|bootstrap }}
+        
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{% url 'core_veiculo_delete' veiculo.id %}" class="btn btn-danger">Deletar</a>            
+        </form>
+    </class>
+</class>
 
-<a href="{% url 'core_veiculo_delete' veiculo.id %}">Deletar</a>
+
+{% endblock %}

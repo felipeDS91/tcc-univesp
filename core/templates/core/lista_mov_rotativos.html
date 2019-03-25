@@ -1,22 +1,60 @@
-<h2> Lista Movimentos Rotativos </h2>
+{% extends 'base.html'%}
+{% load bootstrap %}
 
-<ul>
-    {% for mov_rotativo in mov_rotativos %}
-        <li>
-            <a href="{% url 'core_mov_rotativos_update' mov_rotativo.id %}"> 
-                {{ mov_rotativo.checkin }} - {{ mov_rotativo.veiculo.placa }} 
-            </a>
+{% block menu %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'core_home' %}">Home</a>
         </li>
-    {% endfor %}
-</ul>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Serviços</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Pessoas</a>
+            <a class="dropdown-item" href="{% url 'core_lista_veiculos' %}">Veiculos</a>
+            <a class="dropdown-item active" href="{% url 'core_lista_mov_rotativos' %}">Rotativo</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'core_lista_mensalistas' %}">Mensalistas</a>
+        </div>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">Logout</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block main %}
+
+<div class="row">
+    <div class="mx-auto">
+        <h1>Lista Movimentos Rotativos</h1>
+    </div>
+</div>
     
 
-<form action="{% url 'core_mov_rotativos_novo' %}" method="POST">
-        {# csrf_token = prevents attacks "csrf"  #}
-        {% csrf_token %}
+<class class="row">
+    <class class="col-sm-6">
+        <form action="{% url 'core_mov_rotativos_novo' %}" method="POST">
+            {# csrf_token = prevents attacks "csrf"  #}
+            {% csrf_token %}
+        
+            {# as_p = like paragraph  #} 
+            {{ form|bootstrap }}
+        
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>                
+    </class>
+    <class class="col-sm-6">
+        <ul>
+            {% for mov_rotativo in mov_rotativos %}
+                <li>
+                    <a href="{% url 'core_mov_rotativos_update' mov_rotativo.id %}"> 
+                        {{ mov_rotativo.checkin }} - {{ mov_rotativo.veiculo.placa }} 
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>                        
+    </class>    
+</class>
     
-        {# as_p = like paragraph  #} 
-        {{ form.as_p }}
     
-        <button type="submit">Cadastrar</button>
-    </form>
+{% endblock %}
