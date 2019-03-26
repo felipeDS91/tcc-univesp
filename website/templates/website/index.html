@@ -1,5 +1,67 @@
 {% extends  'website/base.html' %}
+{% load static %}
 
 {% block main %}
-    <h1> Seja bem vindo ao web site </h1>
+    <div class="row">
+
+        <div class="col-6">
+            <h1>Estacionamento 24 horas</h1>
+            <span>Slogan da Empresa</span>
+        </div>
+
+        <div class="col-6">
+            <img class="img-fluid rounded" width="100px" src="{% static 'img/parking.png' %}" alt="Estacionamento 24 horas" >            
+        </div>    
+
+    </div>    
+
+    {% include 'website/menu.html'%}
+
+    <div class="row row-space">
+        <div class="col-6">
+            Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. 
+            Aenean aliquam molestie leo, vitae iaculis nisl. Aenean aliquam molestie leo, 
+            vitae iaculis nisl. Pra lá , depois divoltis porris, paradis. Suco de cevadiss 
+            deixa as pessoas mais interessantis.                
+        </div>
+        <div class="col-6">
+            Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. 
+            Diuretics paradis num copo é motivis de denguis. Casamentiss faiz malandris se pirulitá. 
+            Atirei o pau no gatis, per gatis num morreus.
+        </div>
+    </div>
+
+    <div class="row row-space">
+        <div class="col-4">
+            Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. 
+            Aenean aliquam molestie leo, vitae iaculis nisl. Aenean aliquam molestie leo, 
+            vitae iaculis nisl. Pra lá , depois divoltis porris, paradis. Suco de cevadiss 
+            deixa as pessoas mais interessantis.                
+        </div>
+        <div class="col-4">
+            <img class="mx-auto d-block" src="{% static 'img/parking.png' %}" alt="Estacionamento 24 horas" style="width: 150px">
+        </div>
+        <div class="col-4">
+            Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. 
+            Diuretics paradis num copo é motivis de denguis. Casamentiss faiz malandris se pirulitá. 
+            Atirei o pau no gatis, per gatis num morreus.
+        </div>    
+    </div>
+
+    <div class="row row-space">
+        <div class="col-6">
+                Mussum Ipsum, cacilds vidis litro abertis. Mauris nec dolor in eros commodo tempor. 
+                Aenean aliquam molestie leo, vitae iaculis nisl. Aenean aliquam molestie leo, 
+                vitae iaculis nisl. Pra lá , depois divoltis porris, paradis. Suco de cevadiss 
+                deixa as pessoas mais interessantis.                
+        </div>
+        <div class="col-6">
+                Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. 
+                Diuretics paradis num copo é motivis de denguis. Casamentiss faiz malandris se pirulitá. 
+                Atirei o pau no gatis, per gatis num morreus.
+        </div>
+    </div>
+    
+    {% include 'website/footer.html' %}
+
 {% endblock %}
