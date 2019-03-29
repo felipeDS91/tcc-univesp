@@ -50,8 +50,10 @@
                     <a href="{% url 'core_veiculo_update' veiculo.id %}"> {{ veiculo.placa }} </a>
                 </li>
             {% endfor %}
-        </ul>                
+        </ul>
+        <a class="btn btn-info" href="{% url 'relatorio_pdf' %}"> Relatório PDF</a>
     </class>
+
 
 
 {% endblock %}

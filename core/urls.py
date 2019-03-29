@@ -21,6 +21,7 @@ from .views import (
     mov_rotativos_delete,
     mov_mensalistas_delete,
     mensalista_delete,
+    Pdf,
 )
 
 urlpatterns = [
@@ -50,4 +51,6 @@ urlpatterns = [
     re_path(r'^mensalista-novo/$', mensalista_novo, name='core_mensalista_novo'),
     re_path(r'^mensalista-update/(?P<id>\d+)/$', mensalista_update, name='core_mensalista_update'),
     re_path(r'^mensalista-delete/(?P<id>\d+)/$', mensalista_delete, name='core_mensalista_delete'),
+
+    re_path(r'^relatorio/$', Pdf.as_view(), name='relatorio_pdf'),
 ]
