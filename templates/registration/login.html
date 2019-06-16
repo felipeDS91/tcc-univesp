@@ -1,38 +1,97 @@
-{% extends 'base.html' %}
+{% load static %}
 
-{% block main %}
-    <br>
-    <div class="row">
-        <div class="col-3 mx-auto d-block shadow p-3 mb-5 bg-white rounded">
-            <form method="post" action="{% url 'login' %}">
-                {% csrf_token %}
-                <div class="form-row">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">    
+    <meta name="author" content="Felipe Douglas">    
+    <title>Login</title>
 
-                    <label for="id_username">Usuário</label>
-                    <input id="id_username" name="username"
-                               type="text" class="form-control">
+    <link rel="stylesheet" href="{% static 'assets/css/coreui-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/simple-line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/pace.min.css' %}">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    
+</head>
+
+<body class="app flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card-group">
+                    <div class="card p-4">
+                        <div class="card-body">
+                            <h1>Login</h1>
+                            <p class="text-muted">Entre com a sua conta</p>
+
+                            <form method="post" action="{% url 'login' %}">
+                                {% csrf_token %}
+                                <div class="form-row">                
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="far fa-user-circle"></i>
+                                            </span>
+                                        </div>
+                                        <input id="id_username" name="username" class="form-control" type="text" placeholder="Usuário">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="input-group mb-4">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-unlock-alt"></i>
+                                            </span>
+                                        </div>
+                                        <input id="id_password" name="password" class="form-control" type="password" placeholder="Senha">
+                                    </div>
+                                </div>
+                                {% if form.errors %}
+                                    <p class=" label label-danger">
+                                        Seu usuário ou senha são inválidos. <br>
+                                        Por favor, tente novamente.
+                                    </p>
+                                {% endif %}                
+                                <br>
+                                
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class="btn btn-primary px-4" type="submit" value="{{ next }}">Entrar</button>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <button class="btn btn-link px-0" type="button">Esqueceu a senha?</button>
+                                    </div>
+                                </div>                                    
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+                        <div class="card-body text-center">
+                            <div>
+                                <h2>Inscrever-se</h2>
+                                <p> Tenha em mãos um sistema de fácil aprendizado, sem necessiadade de instalação e que cabe no seu bolso.</p>                                
+                                <button class="btn btn-primary active mt-3" type="button">Registre-se Agora!</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-row">
-                    <label for="id_password">Senha</label>
-                    <input id="id_password" name="password"
-                               type="password" class="form-control">
-
-                </div>
-                {% if form.errors %}
-                    <p class=" label label-danger">
-                        Seu usuário ou senha são inválidos. <br>
-                        Por favor, tente novamente.
-                    </p>
-                {% endif %}
-
-                <br>
-
-                <div class="form-row row-space">
-                    <input type="submit" value="Entrar"
-                           class="btn btn-primary pull-right btn-block" />
-                    <input type="hidden" name="next" value="{{ next }}" />
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-{% endblock main %}
+
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/pace.min.js' %}"></script>
+    <script src="{% static 'assets/js/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'assets/js/coreui.min.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,4 +1,3 @@
-#from django.forms import ModelForm
 from django.forms import ModelForm
 from .models import (
     Pessoa, 
@@ -7,6 +6,7 @@ from .models import (
     MovRotativo, 
     MovMensalista
 )
+
 
 class PessoaForm(ModelForm):
     class Meta:

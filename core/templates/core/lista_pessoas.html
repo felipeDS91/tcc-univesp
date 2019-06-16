@@ -1,4 +1,4 @@
-{% extends 'base.html'%}
+{% extends 'base_sistema.html'%}
 {% load bootstrap %}
 
 {% block header %}
@@ -8,35 +8,18 @@
 {% endblock %}
 
 
-{% block menu %}
-
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'core_home' %}">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Serviços</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item active" href="{% url 'core_lista_pessoas' %}">Pessoas</a>
-            <a class="dropdown-item" href="{% url 'core_lista_veiculos' %}">Veiculos</a>
-            <a class="dropdown-item" href="{% url 'core_lista_mov_rotativos' %}">Rotativo</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{% url 'core_lista_mensalistas' %}">Mensalistas</a>
-        </div>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
-        </li>
-    </ul>
-
-{% endblock %}
-
-
 {% block main %}
 
  <class class="row">
+        
+        <div class="col-sm-11">
+            <h3>Cadastro de Pessoas</h3>                
+        </div>
+        <div class="col-sm-1">  
+            <a class="btn btn-dark btn-block" href="{% url 'core_pessoa_novo' %}"> Novo</a>
+        </div>            
+    
         <class class="col-sm-12">
-            <h3>Lista Pessoas</h3>
             <table id="table" class="table table-hover table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -44,6 +27,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Endereço</th>
                         <th scope="col">Telefone</th>
+                        <th scope="col">Editar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,25 +36,19 @@
                             <th scope="row">{{pessoa.id}}</th>
                             <td>{{pessoa.nome}}</td>
                             <td>{{pessoa.endereco}}</td>
-                            <td>{{pessoa.telefone}}</td>
+                            <td>{{pessoa.telefone}}</td>                            
+                            <td align="center">
+                                <a class="btn btn-info" href="{% url 'core_pessoa_update' pessoa.id %}">
+                                    <i class="fa fa-edit" >                                            
+                                    </i>
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
-            </table>
+            </table>            
         </class>
 
-        <class class="col-sm-12">
-            <h3>Cadastro</h3>
-            <form action="{% url 'core_pessoa_novo' %}" method="POST">
-                {# csrf_token = prevents attacks "csrf"  #}
-                {% csrf_token %}
-
-                {# as_p = like paragraph  #}
-                {{ form|bootstrap }}
-
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-            </form>
-        </class>
     </class>
 
 

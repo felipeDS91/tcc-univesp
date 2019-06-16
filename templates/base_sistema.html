@@ -1,0 +1,169 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">    
+    <meta name="author" content="Felipe Douglas">    
+    <title>Home</title>
+
+    <link rel="stylesheet" href="{% static 'assets/css/coreui-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/simple-line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/pace.min.css' %}">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    {% block header %}
+    {% endblock %}
+
+    <title>Sistema</title>
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+    <header class="app-header navbar">
+        <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#"> <!-- src="img/logo.png" -->
+            <img class="navbar-brand-full" width="89" height="25" alt="BluePark">             
+        </a>   
+        <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="nav navbar-nav d-md-down-none">            
+            <li class="nav-item px-3">
+                <a class="nav-link" href="#">Usuários</a>
+            </li>
+            <li class="nav-item px-3">
+                <a class="nav-link" href="#">Configurações</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item dropdown d-md-down-none">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">                    
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-pill badge-danger">5</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
+                    <div class="dropdown-header text-center">
+                        <strong>Você tem 3 notificações</strong>
+                    </div>
+                    <a class="dropdown-item" href="#">
+                        <i class="icon-user-follow text-success"></i> Novo usuário registrado</a>
+                    <a class="dropdown-item" href="#">
+                        <i class="icon-user-unfollow text-danger"></i> Usuário deletado</a>                    
+                    <a class="dropdown-item" href="#">
+                        <i class="icon-basket-loaded text-primary"></i> Novos clientes</a>
+                                                            
+                </div>
+            </li>
+                        
+            <li class="nav-item dropdown">
+                <a class="nav-link nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-avatar" src="{% static 'assets/img/avatar.png' %}" alt="felipe.douglas.silva@univesp.br">
+                </a>  
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-header text-center">
+                        <strong>Conta</strong>
+                    </div>                    
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-user"></i> Perfil</a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-wrench"></i> Configurações</a>                    
+
+                    <a class="dropdown-item" href="{% url 'logout' %}">
+                        <i class="fa fa-lock"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+        
+    </header>
+    <div class="app-body">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">                    
+                    <li class="nav-title">Sistema</li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#">                            
+                            <i class="nav-icon fas fa-edit"></i> Cadastros</a>
+                        <ul class="nav-dropdown-items">                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'core_lista_pessoas' %}">   
+                                    <i class="nav-icon fas fa-user"></i> Pessoas
+                                </a>                                  
+                            </li>                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'core_lista_veiculos' %}">                                                                        
+                                    <i class="nav-icon fas fa-car"></i> Veículos</a>
+                            </li>                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'core_lista_mensalistas' %}">                                                                        
+                                    <i class="nav-icon fas fa-car"></i> Mensalistas</a>
+                            </li>                                
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="nav-icon fas fa-chart-line"></i> Movimentações</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">                                                                        
+                                <a class="nav-link" href="{% url 'core_lista_mov_mensalistas' %}">
+                                    <i class="nav-icon fas fa-retweet"></i> Mensalistas</a>                                
+                            </li>
+                            <li class="nav-item">                                
+                                <a class="nav-link" href="{% url 'core_lista_mov_rotativos' %}">
+                                    <i class="nav-icon fas fa-arrows-alt"></i> Rotativos</a>                                    
+                            </li>                            
+                        </ul>
+                    </li>                                                            
+                </ul>
+            </nav>
+            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+        </div>
+        <main class="main">
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'core_home' %}">Início</a>
+                </li>
+                <li class="breadcrumb-item">                        
+                    <a href="#">{{ user.get_username }}</a>
+                </li>
+                <li class="breadcrumb-item active">{{ viewName }}</li>
+                
+            </ol>
+            <div class="container-fluid">
+
+                {% block main %}
+                {% endblock %}                        
+
+            </div>
+        </main>
+        
+    </div>
+    <footer class="app-footer">
+        <div>
+            <a href="https://univesp.br">Univesp</a>
+            <span>© 2019.</span>
+        </div>
+        <div class="ml-auto">
+            <span>Powered by</span>
+            <a href="#">Felipe Douglas</a>
+        </div>
+    </footer>
+        
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/pace.min.js' %}"></script>
+    <script src="{% static 'assets/js/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'assets/js/coreui.min.js' %}"></script>
+
+    {% block footer %}
+    {% endblock %}
+</body>
+</html>

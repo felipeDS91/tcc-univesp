@@ -1,58 +1,91 @@
-{% extends 'base.html'%}
+{% extends 'base_sistema.html'%}
 {% load bootstrap %}
 
-{% block menu %}
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-        <a class="nav-link" href="{% url 'core_home' %}">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Serviços</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Pessoas</a>
-            <a class="dropdown-item" href="{% url 'core_lista_veiculos' %}">Veiculos</a>
-            <a class="dropdown-item" href="{% url 'core_lista_mov_rotativos' %}">Rotativo</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item active" href="{% url 'core_lista_mensalistas' %}">Mensalistas</a>
-        </div>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
-        </li>
-    </ul>
+{% block header %}
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
 {% endblock %}
+
 
 {% block main %}
 
-<div class="row">
-    <div class="mx-auto">
-        <h1>Lista Movimentos Mensalistas</h1>
+ <class class="row">    
+    <div class="col-sm-11">
+        <h3>Movimento Mensalista</h3>                
     </div>
-</div>
-
-<class class="row">
-    <class class="col-sm-6">
-        <form action="{% url 'core_mov_mensalistas_novo' %}" method="POST">
-                {# csrf_token = prevents attacks "csrf"  #}
-                {% csrf_token %}
-                
-                {# as_p = like paragraph  #} 
-                {{ form|bootstrap }}
-                
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>                
+    <div class="col-sm-1">  
+        <a class="btn btn-dark btn-block" href="{% url 'core_mov_mensalistas_novo' %}"> Novo</a>
+    </div>            
+    
+    <class class="col-sm-12">        
+        <table id="table" class="table table-hover table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Mensalista</th>
+                    <th scope="col">Data Pagamento</th>
+                    <th scope="col">Total</th>                        
+                    <th scope="col">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mov_mensalista in mov_mensalistas %}
+                    <tr>
+                        <th scope="row">{{mov_mensalista.mensalista}}</th>
+                        <td>{{mov_mensalista.dt_pgto}}</td>
+                        <td>{{mov_mensalista.total}}</td>
+                        <td align="center">                             
+                            <a class="btn btn-info" href="{% url 'core_mov_mensalistas_update' mov_mensalista.id %}">
+                                <i class="fa fa-edit" >                                            
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </class>
 
-    <class class="col-sm-6">
-        <ul>
-            {% for mov_mensalista in mov_mensalistas %}
-                    <li>
-                        <a href="{% url 'core_mov_mensalistas_update' mov_mensalista.id %}"> {{ mov_mensalista.mensalista }} - {{dt_pgto}} </a>
-                    </li>
-            {% endfor %}
-        </ul>                
-    </class>    
 </class>
 
+
+{% endblock %}
+
+{% block footer %}
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#table').DataTable( {
+                "language": {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+
+                }
+            } );
+        } );
+
+    </script>
 
 {% endblock %}
